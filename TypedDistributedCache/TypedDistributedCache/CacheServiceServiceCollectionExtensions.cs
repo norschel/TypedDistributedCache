@@ -8,10 +8,16 @@ namespace TypedDistributedCache
 {
     public static class CacheServiceServiceCollectionExtensions
     {
+        /// <summary>
+        /// Extension method for IServiceCollection. Registers ICacheService with an in memory cache provider.
+        /// </summary>
+        /// <param name="services">The IServiceCollection in which you want to register the ICacheService configuration</param>
+        /// <returns>The updated IServiceCollection</returns>
         public static IServiceCollection AddMemoryCache(this IServiceCollection services)
         {
             if (services == null) throw new ArgumentNullException(nameof(services));
 
+            services.AddOptions();
             services.TryAdd(ServiceDescriptor.Singleton<IDistributedCache, MemoryDistributedCache>());
 
             RegisterCacheService(services);
@@ -19,11 +25,20 @@ namespace TypedDistributedCache
             return services;
         }
 
-        public static IServiceCollection AddRedisCache(this IServiceCollection services)
+        /// <summary>
+        /// Extension method for IServiceCollection. Registers ICacheService with a Distributed Redis connection
+        /// </summary>
+        /// <param name="services">The IServiceCollection in which you want to register the ICacheService configuration</param>
+        /// <param name="connectionString">Redis connection string</param>
+        /// <returns>The updated IServiceCollection</returns>
+        public static IServiceCollection AddRedisCache(this IServiceCollection services, string connectionString)
         {
             if (services == null) throw new ArgumentNullException(nameof(services));
             
-            services.TryAdd(ServiceDescriptor.Singleton<IDistributedCache, RedisCache>());
+            services.AddDistributedRedisCache(options =>
+            {
+                options.Configuration = connectionString;
+            });
 
             RegisterCacheService(services);
 
