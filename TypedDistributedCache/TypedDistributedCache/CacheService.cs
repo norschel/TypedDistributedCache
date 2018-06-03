@@ -21,6 +21,8 @@ namespace TypedDistributedCache
             ContractResolver = new PrivateSetterContractResolver()
         };
 
+        private static DistributedCacheEntryOptions DefaultCacheOptions = new DistributedCacheEntryOptions();
+
         public CacheService(IDistributedCache distributedCache)
         {
             _distributedCache = distributedCache;
@@ -68,10 +70,10 @@ namespace TypedDistributedCache
         /// <returns></returns>
         public async Task Set(string key, string value, TimeSpan? ttl = null)
         {
-            await _distributedCache.SetStringAsync(key, value, new DistributedCacheEntryOptions
+            await _distributedCache.SetStringAsync(key, value, ttl.HasValue ? new DistributedCacheEntryOptions
             {
                 AbsoluteExpirationRelativeToNow = ttl
-            });
+            } : DefaultCacheOptions);
         }
 
         /// <summary>
@@ -100,8 +102,7 @@ namespace TypedDistributedCache
 
         private async Task<string> SerializeToJson(object o)
         {
-            var json = await Task.Factory.StartNew(() => JsonConvert.SerializeObject(o, _serializerSettings));
-            return json;
+            return await Task.Factory.StartNew(() => JsonConvert.SerializeObject(o, _serializerSettings));
         }
 
         private async Task<T> DeserializeJson<T>(string json)
