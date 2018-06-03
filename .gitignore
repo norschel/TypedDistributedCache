@@ -10,3 +10,4 @@
 /src/TypedDistributedCache.Tests/obj
 /src/TypedDistributedCache/bin/Debug
 /src/.vs/TypedDistributedCache/DesignTimeBuild
+/src/TypedDistributedCache.Tests/bin/Debug/netcoreapp2.0
