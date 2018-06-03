@@ -26,13 +26,13 @@ before_build:
 
   # Display minimal restore text
 
-  - cmd: dotnet restore ./src/src.csproj --verbosity m
+  - cmd: dotnet restore ./src --verbosity m
 
 build_script:
 
   # output will be in ./src/bin/debug/netstandard2.0/publish
 
-  - cmd: dotnet publish
+  - cmd: dotnet publish ./src
 
 after_build:
 
@@ -47,18 +47,6 @@ artifacts:
    type: WebDeployPackage
 
 clone_depth: 1
-
-test_script:
-
-  # restore packages for our unit tests
-
-  - cmd: dotnet restore ./tests/tests.csproj --verbosity m
-
-  # run the unit tests (requires changing into the test directory)
-
-  - cmd: cd tests
-
-  - cmd: dotnet xunit
 
 on_finish :
 
