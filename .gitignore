@@ -2,10 +2,11 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/TypedDistributedCache/.vs/TypedDistributedCache/v15
-/TypedDistributedCache/TypedDistributedCache/bin/Debug/netstandard2.0
-/TypedDistributedCache/TypedDistributedCache/obj/Debug/netstandard2.0
-/TypedDistributedCache/TypedDistributedCache/obj
-/TypedDistributedCache/TypedDistributedCache.Tests/bin/Debug/netcoreapp2.1
-/TypedDistributedCache/TypedDistributedCache.Tests/obj
-/TypedDistributedCache/TypedDistributedCache/bin/Debug
+/src/.vs/TypedDistributedCache/v15
+/src/TypedDistributedCache/bin/Debug/netstandard2.0
+/src/TypedDistributedCache/obj/Debug/netstandard2.0
+/src/TypedDistributedCache/obj
+/src/TypedDistributedCache.Tests/bin/Debug/netcoreapp2.1
+/src/TypedDistributedCache.Tests/obj
+/src/TypedDistributedCache/bin/Debug
+/src/.vs/TypedDistributedCache/DesignTimeBuild
