@@ -110,11 +110,6 @@ namespace TypedDistributedCache
             if (json == null)
                 return default(T);
 
-            var settings = new JsonSerializerSettings
-            {
-                ContractResolver = new PrivateSetterContractResolver()
-            };
-
             if (typeof(T) == typeof(string))
             {
                 return (T)Convert.ChangeType(json, typeof(T));
