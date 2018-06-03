@@ -2,6 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Description>Simple wrapper around the ASP.net Core IDistributedCache implementation to support typed cache operations.</Description>
+    <Authors>Jarrich Van De Voorde</Authors>
+    <Company>Octotrip Pte. Ltd.</Company>
+    <PackageReleaseNotes>Initial release</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
